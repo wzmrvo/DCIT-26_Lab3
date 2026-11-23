@@ -18,9 +18,12 @@ function ProductCard({
     currency: "PHP",
   });
   const icon = CATEGORY_ICONS[category] ?? "🛍️";
+  const categoryClass = `cat-${category.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
-    <div className={`product-card ${inStock ? "" : "out-of-stock"}`}>
+    <div
+      className={`product-card ${categoryClass} ${inStock ? "" : "out-of-stock"}`}
+    >
       {children && <div className="badge">{children}</div>}
       <div className="thumb" aria-hidden="true">
         {icon}

@@ -8,6 +8,12 @@ function App() {
   // Cart state (from Lab 3)
   const [cartCount, setCartCount] = useState(0);
   const [lastAdded, setLastAdded] = useState("");
+  const [theme, setTheme] = useState(() =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  );
+
+  const toggleTheme = () =>
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
 
   // Lab 4 state
   const [searchText, setSearchText] = useState("");
@@ -57,10 +63,21 @@ function App() {
   const badges = { 1: "New", 8: "Sale" };
 
   return (
+    <div className="theme-root" data-theme={theme}>
     <div className="app">
       <header className="header">
-        <h1>CvSU Mini Store</h1>
-        <p>Browse school and tech essentials</p>
+        <div>
+          <h1>CvSU Mini Store</h1>
+          <p>Browse school and tech essentials</p>
+        </div>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        >
+          {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
+        </button>
       </header>
 
       <p className="cart-message" key={cartCount}>
@@ -105,6 +122,7 @@ function App() {
       )}
 
       <footer className="footer">CvSU Mini Store · DCIT26</footer>
+    </div>
     </div>
   );
 }

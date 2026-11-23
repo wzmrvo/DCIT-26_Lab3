@@ -60,9 +60,10 @@ function App() {
     <div className="app">
       <header className="header">
         <h1>CvSU Mini Store</h1>
+        <p>Browse school and tech essentials</p>
       </header>
 
-      <p className="cart-message">
+      <p className="cart-message" key={cartCount}>
         {cartCount === 0
           ? "Your cart is empty."
           : `Items added to cart: ${cartCount} (Last added: ${lastAdded})`}
@@ -102,6 +103,8 @@ function App() {
           ))}
         </div>
       )}
+
+      <footer className="footer">CvSU Mini Store · DCIT26</footer>
     </div>
   );
 }

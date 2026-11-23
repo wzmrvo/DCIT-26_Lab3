@@ -1,3 +1,10 @@
+const CATEGORY_ICONS = {
+  Electronics: "🖱️",
+  Books: "📚",
+  "School Supplies": "✏️",
+  Accessories: "🎒",
+};
+
 function ProductCard({
   title,
   price,
@@ -10,10 +17,14 @@ function ProductCard({
     style: "currency",
     currency: "PHP",
   });
+  const icon = CATEGORY_ICONS[category] ?? "🛍️";
 
   return (
     <div className={`product-card ${inStock ? "" : "out-of-stock"}`}>
       {children && <div className="badge">{children}</div>}
+      <div className="thumb" aria-hidden="true">
+        {icon}
+      </div>
       <h3>{title}</h3>
       <p className="category">{category}</p>
       <p className="price">{formattedPrice}</p>
